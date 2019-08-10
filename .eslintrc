@@ -1,0 +1,9 @@
+{
+  "extends": "eslint-config-synacor",
+  "rules": {
+    "callback-return": [1, ["callback", "cb", "next", "done"]],
+    "no-constant-condition": 0,
+    "no-undefined": 2,
+    "brace-style": 0
+  }
+}
