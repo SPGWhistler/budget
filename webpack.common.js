@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	context: path.resolve(__dirname, 'src'),
@@ -42,10 +43,9 @@ module.exports = {
 				//Automatically load css files as js modules and also
 				//inject them into the DOM.
 				test: /\.css$/,
-				exclude: /node_modules/,
 				use: [
 					{
-						loader: 'to-string-loader'
+						loader: 'style-loader'
 					},
 					{
 						loader: 'css-loader'
@@ -62,6 +62,13 @@ module.exports = {
 			ENVIRONMENT: JSON.stringify(process.env.ENVIRONMENT || 'prod')
 		}),
 		new CleanWebpackPlugin(['public']),
+		new HtmlWebpackPlugin({
+			template: 'index.html',
+			minify: false,
+			showErrors: true,
+			hash: true,
+			cache: true
+		}),
 		new webpack.optimize.LimitChunkCountPlugin({
 			maxChunks: 1 //We only want a single entry point
 		}),

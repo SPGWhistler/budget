@@ -3,11 +3,11 @@
   "description": "",
   "version": "0.0.1",
   "scripts": {
-	"start": "ENVIRONMENT=dev webpack-dev-server --config webpack.dev.js",
-	"test": "npm run lint",
-	"lint": "eslint src",
-	"prebuild": "rm -rf public",
-	"build": "webpack --config webpack.prod.js"
+    "start": "ENVIRONMENT=dev webpack-dev-server --config webpack.dev.js",
+    "test": "npm run lint",
+    "lint": "eslint src",
+    "prebuild": "rm -rf public",
+    "build": "webpack --config webpack.prod.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
@@ -19,11 +19,15 @@
     "@babel/preset-env": "^7.2.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "bootstrap": "^4.3.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^0.28.11",
     "eslint": "^5.9.0",
     "eslint-config-synacor": "^3.0.3",
+    "html-webpack-plugin": "^3.2.0",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
     "style-loader": "^0.19.1",
     "to-string-loader": "^1.1.5",
     "webpack": "^4.27.1",
