@@ -7,7 +7,7 @@ module.exports = {
 
 	entry: {
 		//include fetch polyfill in generated bundle without having to add it explicitly in import statements in each file
-		'index': ['whatwg-fetch', './index.js']
+		index: ['whatwg-fetch', './index.js']
 	},
 
 	module: {
@@ -49,16 +49,6 @@ module.exports = {
 					},
 					{
 						loader: 'css-loader'
-					}
-				]
-			},
-			{
-				//Load pug files
-				test: /\.pug$/,
-				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'pug-loader'
 					}
 				]
 			}

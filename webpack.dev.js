@@ -11,7 +11,7 @@ module.exports = merge(common, {
 
 	devServer: {
 		host: 'localhost',
-		port: 3334,
+		port: 8080,
 		contentBase: path.resolve(__dirname, 'public'),
 		clientLogLevel: 'none',
 		https: false,

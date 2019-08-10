@@ -2,6 +2,13 @@
   "name": "budget",
   "description": "",
   "version": "0.0.1",
+  "scripts": {
+	"start": "ENVIRONMENT=dev webpack-dev-server --config webpack.dev.js",
+	"test": "npm run lint",
+	"lint": "eslint src",
+	"prebuild": "rm -rf public",
+	"build": "webpack --config webpack.prod.js"
+  },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "whatwg-fetch": "^2.0.4"
