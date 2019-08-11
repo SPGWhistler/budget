@@ -1,0 +1,11 @@
+#deleteExpenseModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalCenterTitle' aria-hidden='true')
+	.modal-dialog.modal-dialog-centered(role='document')
+		.modal-content
+			.modal-header
+				h5#exampleModalCenterTitle.modal-title Would you like to delete this expense?
+				button.close(type='button' data-dismiss='modal' aria-label='Close')
+				span(aria-hidden='true') &times;
+			.modal-body
+			.modal-footer
+				button#deleteExpenseConfirm.btn.btn-danger(type='button') Yes
+				button.btn.btn-secondary(type='button' data-dismiss='modal') No

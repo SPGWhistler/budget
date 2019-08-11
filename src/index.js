@@ -13,19 +13,6 @@ class Budget {
 		};
 		$(document).ready(() => {
 			$('body').show();
-			$('#dollars').on('keydown', (e) => {
-				if (e.keyCode === 190 || e.keyCode === 229 || e.keyCode === 110) {
-					e.preventDefault();
-					$('#cents').focus();
-					return false;
-				}
-			});
-			$('#cents').on('keydown', (e) => {
-				if (e.keyCode === 190 || e.keyCode === 229 || e.keyCode === 110 || e.keyCode === 189 || e.keyCode === 109) {
-					e.preventDefault();
-					return false;
-				}
-			});
 			$('#addExpenseForm').submit((e) => {
 				e.preventDefault();
 				let val = $('#expenseTypeInput').val();
@@ -63,11 +50,9 @@ class Budget {
 		$('#expenseTypes button').click((e) => {
 			let expenseType = $(e.currentTarget).text().trim();
 			let dollars = $('#dollars').val();
-			let cents = $('#cents').val();
-			if (dollars !== '' || cents !== '') {
-				let amount = Number(dollars + '.' + cents);
+			if (dollars !== '') {
+				let amount = Number(dollars);
 				this.saveExpense(amount, expenseType);
-				$('#cents').val('');
 				$('#dollars').val('').focus();
 			}
 		});

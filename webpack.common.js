@@ -51,6 +51,19 @@ module.exports = {
 						loader: 'css-loader'
 					}
 				]
+			},
+			{
+				//Load pug files
+				test: /\.pug$/,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: 'pug-loader',
+						options: {
+							pretty: true
+						}
+					}
+				]
 			}
 		]
 	},
@@ -63,7 +76,7 @@ module.exports = {
 		}),
 		new CleanWebpackPlugin(['public']),
 		new HtmlWebpackPlugin({
-			template: 'index.html',
+			template: 'index.pug',
 			minify: false,
 			showErrors: true,
 			hash: true,

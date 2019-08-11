@@ -1,0 +1,22 @@
+.container-fluid.h-100
+	.row.h-100.justify-content-center
+		.col-md-auto
+			.row.justify-content-center.align-items-center.h-25
+				.col.text-right
+					h1#runningBalance $34.54
+				.col.text-left
+					h4#dailyBalance $20.43
+			.row.justify-content-center.align-items-center.h-50
+				.col-md-auto
+					form
+						.form-group.row.justify-content-center.pl-2.pr-2
+							.input-group.input-group-lg
+								.input-group-prepend
+									span.input-group-text
+										| $
+								input#dollars.form-control.text-center(type='number' autocomplete='off' aria-label='dollars' autofocus='')
+						.form-group.row.justify-content-center
+							.dropdown
+								button#expenseTypesDropdown.btn.btn-primary.btn-lg.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+									| Expense Type
+								#expenseTypes.dropdown-menu(aria-labelledby='expenseTypesDropdown')
