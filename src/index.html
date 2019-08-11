@@ -52,23 +52,7 @@
 						<th>Amount</th>
 						<th>Category</th>
 					</thead>
-					<tbody>
-						<tr>
-							<td>$23.32</td>
-							<td>Transit</td>
-						</tr>
-						<tr>
-							<td>$5.34</td>
-							<td>Snack</td>
-						</tr>
-						<tr class="table-danger">
-							<td>$5.34</td>
-							<td>Snack</td>
-						</tr>
-						<tr>
-							<td>$5.34</td>
-							<td>Snack</td>
-						</tr>
+					<tbody id="expensesTable">
 					</tbody>
 				</table>
 			</div>
@@ -125,7 +109,7 @@
 										<button
 											class="btn btn-primary btn-lg dropdown-toggle"
 											type="button"
-											id="dropdownMenuButton"
+											id="expenseTypesDropdown"
 											data-toggle="dropdown"
 											aria-haspopup="true"
 											aria-expanded="false"
@@ -134,7 +118,7 @@
 										</button>
 										<div
 											class="dropdown-menu"
-											aria-labelledby="dropdownMenuButton"
+											aria-labelledby="expenseTypesDropdown"
 											id="expenseTypes">
 										</div>
 									</div>

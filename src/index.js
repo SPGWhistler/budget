@@ -26,11 +26,13 @@ class Budget {
 				let expenseTypes = this.getExpenseTypes();
 				expenseTypes.push(val);
 				this.setExpenseTypes(expenseTypes);
+				this.renderExpenseTypes();
 				return false;
 			});
 		});
 		this.renderBalance();
 		this.renderExpenseTypes();
+		this.renderExpensesTable();
 	}
 
 	renderBalance() {
@@ -53,11 +55,32 @@ class Budget {
 		}
 		$('#expenseTypes button').click((e) => {
 			let expenseType = $(e.currentTarget).text().trim();
-			let amount = Number($('#dollars').val() + '.' + $('#cents').val());
-			this.saveExpense(amount, expenseType);
-			$('#cents').val('');
-			$('#dollars').val('').focus();
+			let dollars = $('#dollars').val();
+			let cents = $('#cents').val();
+			if (dollars !== '' || cents !== '') {
+				let amount = Number(dollars + '.' + cents);
+				this.saveExpense(amount, expenseType);
+				$('#cents').val('');
+				$('#dollars').val('').focus();
+			}
 		});
+	}
+
+	renderExpensesTable() {
+		$('#expensesTable').empty();
+		let today = this.getFormattedDate();
+		let expenses = this.getExpenses();
+		if (expenses[today] && expenses[today].length) {
+			for (const expense of expenses[today]) {
+				let amount = parseFloat(Math.round(expense.amount * 100) / 100).toFixed(2);
+				$('#expensesTable').append(`
+				<tr>
+					<td>$${amount}</td>
+					<td>${expense.category}</td>
+				</tr>
+				`);
+			}
+		}
 	}
 	
 	/**
@@ -160,6 +183,7 @@ class Budget {
 		expenses[fdate].push({ amount, category });
 		this.setExpenses(expenses);
 		this.renderBalance();
+		this.renderExpensesTable();
 	}
 
 	getRunningBalance() {
