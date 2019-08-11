@@ -42,7 +42,7 @@ class Budget {
 		$('#expenseTypes').empty();
 		for (const expenseType of this.getExpenseTypes()) {
 			$('#expenseTypes').append(`
-			<button class="dropdown-item" type="button">
+			<button class="btn btn-success btn-block" type="button">
 				${expenseType}
 			</button>
 			`);
