@@ -27,6 +27,7 @@ class Budget {
 				expenseTypes.push(val);
 				this.setExpenseTypes(expenseTypes);
 				this.renderExpenseTypes();
+				$('.navbar-collapse').collapse('hide');
 				return false;
 			});
 		});
@@ -71,15 +72,40 @@ class Budget {
 		let today = this.getFormattedDate();
 		let expenses = this.getExpenses();
 		if (expenses[today] && expenses[today].length) {
-			for (const expense of expenses[today]) {
+			expenses[today].forEach((expense, i) => {
 				let amount = parseFloat(Math.round(expense.amount * 100) / 100).toFixed(2);
 				$('#expensesTable').append(`
-				<tr>
+				<tr data-index="${i}">
 					<td>$${amount}</td>
 					<td>${expense.category}</td>
 				</tr>
 				`);
-			}
+			});
+			$('#expensesTable tr').click((e) => {
+				let index = $(e.currentTarget).data('index');
+				this.renderDeleteExpenseModal(index);
+			});
+		}
+	}
+
+	renderDeleteExpenseModal(index, date) {
+		let fdate = (date) ? this.getFormattedDate(date) : this.getFormattedDate();
+		let expenses = this.getExpenses();
+		if (expenses[fdate] && expenses[fdate].length && expenses[fdate][index]) {
+			let amount = parseFloat(Math.round(expenses[fdate][index].amount * 100) / 100).toFixed(2);
+			$('#deleteExpenseModal div.modal-body').empty().append(`
+				${amount} ${expenses[fdate][index].category}
+			`);
+			$('#deleteExpenseConfirm').off();
+			$('#deleteExpenseConfirm').click((e) => {
+				expenses[fdate].splice(index, 1);
+				this.setExpenses(expenses);
+				this.renderExpensesTable();
+				this.renderBalance();
+				$('#deleteExpenseModal').modal('hide');
+				$('#deleteExpenseConfirm').off();
+			});
+			$('#deleteExpenseModal').modal('show');
 		}
 	}
 	
