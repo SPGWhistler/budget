@@ -10,7 +10,7 @@ module.exports = merge(common, {
 	mode: 'development',
 
 	devServer: {
-		host: 'localhost',
+		host: '192.168.1.123',
 		port: 8080,
 		contentBase: path.resolve(__dirname, 'public'),
 		clientLogLevel: 'none',
