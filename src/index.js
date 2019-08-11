@@ -25,8 +25,12 @@ class Budget {
 	}
 
 	renderBalance() {
-		$('#runningBalance').text(`$${this.getRunningBalance()}`);
-		$('#dailyBalance').text(`$${this.getTodaysBalance()}`);
+		let rb = this.getRunningBalance();
+		rb = parseFloat(Math.round(rb * 100) / 100).toFixed(2);
+		let tb = this.getTodaysBalance();
+		tb = parseFloat(Math.round(tb * 100) / 100).toFixed(2);
+		$('#runningBalance').text(`$${rb}`);
+		$('#dailyBalance').text(`$${tb}`);
 	}
 	
 	/**
@@ -139,7 +143,7 @@ class Budget {
 		let expenses = this.getExpenses();
 		let balance = 0;
 		for (const day of days) {
-			balance += 5000;
+			balance += this.config.dailyBudget * 100;
 			let d = this.getFormattedDate(day);
 			if (expenses[d] && expenses[d].length) {
 				for (const expense of expenses[d]) {
@@ -151,7 +155,7 @@ class Budget {
 	}
 
 	getTodaysBalance() {
-		let balance = 5000;
+		let balance = this.config.dailyBudget * 100;
 		let today = this.getFormattedDate();
 		let expenses = this.getExpenses();
 		if (expenses[today] && expenses[today].length) {
