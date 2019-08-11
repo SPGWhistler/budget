@@ -20,8 +20,17 @@ class Budget {
 					return false;
 				}
 			});
+			$('#addExpenseForm').submit((e) => {
+				e.preventDefault();
+				let val = $('#expenseTypeInput').val();
+				let expenseTypes = this.getExpenseTypes();
+				expenseTypes.push(val);
+				this.setExpenseTypes(expenseTypes);
+				return false;
+			});
 		});
 		this.renderBalance();
+		this.renderExpenseTypes();
 	}
 
 	renderBalance() {
@@ -31,6 +40,24 @@ class Budget {
 		tb = parseFloat(Math.round(tb * 100) / 100).toFixed(2);
 		$('#runningBalance').text(`$${rb}`);
 		$('#dailyBalance').text(`$${tb}`);
+	}
+
+	renderExpenseTypes() {
+		$('#expenseTypes').empty();
+		for (const expenseType of this.getExpenseTypes()) {
+			$('#expenseTypes').append(`
+			<button class="dropdown-item" type="button">
+				${expenseType}
+			</button>
+			`);
+		}
+		$('#expenseTypes button').click((e) => {
+			let expenseType = $(e.currentTarget).text().trim();
+			let amount = Number($('#dollars').val() + '.' + $('#cents').val());
+			this.saveExpense(amount, expenseType);
+			$('#cents').val('');
+			$('#dollars').val('').focus();
+		});
 	}
 	
 	/**
@@ -132,6 +159,7 @@ class Budget {
 		expenses[fdate] = expenses[fdate] || [];
 		expenses[fdate].push({ amount, category });
 		this.setExpenses(expenses);
+		this.renderBalance();
 	}
 
 	getRunningBalance() {
@@ -164,6 +192,21 @@ class Budget {
 			}
 		}
 		return balance / 100;
+	}
+
+	getExpenseTypes() {
+		if (!this.expenseTypes) {
+			if (!localStorage.expenseTypes) {
+				localStorage.expenseTypes = JSON.stringify([]);
+			}
+			this.expenseTypes = JSON.parse(localStorage.expenseTypes);
+		}
+		return this.expenseTypes;
+	}
+
+	setExpenseTypes(expenseTypes) {
+		this.expenseTypes = expenseTypes;
+		localStorage.expenseTypes = JSON.stringify(expenseTypes);
 	}
 }
 

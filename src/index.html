@@ -32,6 +32,14 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<form id="addExpenseForm" class="form-inline">
+					<div class="input-group input-group-sm">
+						<input id="expenseTypeInput" class="form-control mr-sm-2" type="text" placeholder="Add Expense Type" aria-label="Add Expense Type">
+						<div class="input-group-append">
+							<button id="addExpenseButton" class="btn btn-outline-success" type="submit">Add</button>
+						</div>
+					</div>
+				</form>
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item text-center">
 						<a class="nav-link" href="#">
@@ -127,45 +135,7 @@
 										<div
 											class="dropdown-menu"
 											aria-labelledby="dropdownMenuButton"
-										>
-											<button
-												class="dropdown-item"
-												type="button"
-											>
-												Breakfast
-											</button>
-											<button
-												class="dropdown-item"
-												type="button"
-											>
-												Lunch
-											</button>
-											<button
-												class="dropdown-item"
-												type="button"
-											>
-												Dinner
-											</button>
-											<div class="dropdown-divider"></div>
-											<button
-												class="dropdown-item"
-												type="button"
-											>
-												Shopping
-											</button>
-											<button
-												class="dropdown-item"
-												type="button"
-											>
-												Groceries
-											</button>
-											<div class="dropdown-divider"></div>
-											<button
-												class="dropdown-item"
-												type="button"
-											>
-												Transit
-											</button>
+											id="expenseTypes">
 										</div>
 									</div>
 								</div>
