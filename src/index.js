@@ -3,6 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
 import dateFormat from 'date-fns/format';
 import { eachDayOfInterval, lastDayOfMonth, isWeekend, subDays, subMonths, differenceInDays, compareAsc, addDays } from 'date-fns';
+import Amplify, { Auth, Storage } from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+Amplify.configure(awsconfig);
 
 class Budget {
 	constructor() {
@@ -27,6 +31,36 @@ class Budget {
 		this.renderBalance();
 		this.renderExpenseTypes();
 		this.renderExpensesTable();
+
+		/*
+		Auth.signUp({
+			username: 'SPGWhistler',
+			password: 'S2vannah',
+			attributes: {
+				email: 'SPGWhistler@gmail.com'
+			},
+			validationData: []  //optional
+		})
+			.then(data => console.log(data))
+			.catch(err => console.log(err));
+		*/
+		/*
+		Auth.confirmSignUp('SPGWhistler', '880213', {
+		}).then(data => console.log(data))
+		  .catch(err => console.log(err));
+		  */
+		 /*
+		Auth.signIn({
+			username: 'SPGWhistler', // Required, the username
+			password: 'S2vannah' // Optional, the password
+		}).then(user => console.log(user))
+		.catch(err => console.log(err));
+		*/
+		/*
+		Storage.put('test.txt', 'Hello')
+			.then(result => console.log(result)) // {key: "test.txt"}
+			.catch(err => console.log(err));
+			*/
 	}
 
 	renderBalance() {

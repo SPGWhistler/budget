@@ -1,0 +1,14 @@
+{
+	"auth": {
+		"budget32b46ca4": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"storage": {
+		"budget": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}
