@@ -77,15 +77,12 @@ module.exports = {
 		new CleanWebpackPlugin(['public']),
 		new HtmlWebpackPlugin({
 			template: 'index.pug',
+			filename: 'index.html',
 			minify: false,
 			showErrors: true,
 			hash: true,
 			cache: true
-		}),
-		new webpack.optimize.LimitChunkCountPlugin({
-			maxChunks: 1 //We only want a single entry point
-		}),
-		process.env.ANALYZE && new BundleAnalyzerPlugin()
+		})
 	].filter(Boolean),
 
 	optimization: {
