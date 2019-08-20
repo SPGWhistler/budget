@@ -11,6 +11,15 @@ export default class Expenses {
 		$(document).ready(() => {
 			$('#pageContent').html(expensesPage);
 			$('body').show();
+			$('#addExpenseForm').submit((e) => {
+				e.preventDefault();
+				let val = $('#expenseTypeInput').val();
+				let expenseTypes = this.budget.getExpenseTypes();
+				expenseTypes.push(val);
+				this.budget.setExpenseTypes(expenseTypes);
+				this.controller.navigateTo('budget');
+				return false;
+			});
 		});
 		this.renderExpensesTable();
 	}

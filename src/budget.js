@@ -24,16 +24,6 @@ export default class Budget {
 		$(document).ready(() => {
 			$('#pageContent').html(budgetPage);
 			$('body').show();
-			$('#addExpenseForm').submit((e) => {
-				e.preventDefault();
-				let val = $('#expenseTypeInput').val();
-				let expenseTypes = this.getExpenseTypes();
-				expenseTypes.push(val);
-				this.setExpenseTypes(expenseTypes);
-				this.renderExpenseTypes();
-				$('.navbar-collapse').collapse('hide');
-				return false;
-			});
 		});
 		this.renderBalance();
 		this.renderExpenseTypes();
