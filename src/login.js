@@ -3,19 +3,8 @@ import $ from 'jquery';
 import loginPage from './templates/login/login.pug';
 
 export default class Login {
-	constructor(index) {
-		this.index = index;
-		$(document).ready(() => {
-			$('#signoutButton').click(async () => {
-				try {
-					await Auth.signOut();
-					this.renderPage();
-					$('.navbar-collapse').collapse('hide');
-				} catch (e) {
-					console.log('could not signout', e);
-				}
-			});
-		});
+	constructor(controller) {
+		this.controller = controller;
 		/*
 		Auth.signUp({
 			username: 'SPGWhistler',
@@ -51,7 +40,21 @@ export default class Login {
 	}
 
 	renderPage() {
+		try {
+			Auth.signOut();
+		} catch (e) {}
 		$(document).ready(() => {
+			/*
+			$('#signoutButton').click(async () => {
+				try {
+					await Auth.signOut();
+					this.renderPage();
+					$('.navbar-collapse').collapse('hide');
+				} catch (e) {
+					console.log('could not signout', e);
+				}
+			});
+			*/
 			$('#pageContent').html(loginPage);
 			$('body').show();
 			$('#loginForm').submit((e) => {
@@ -108,7 +111,7 @@ export default class Login {
 			} else {
 				// The user directly signs in
 				//console.log('user logged in', user);
-				this.index.renderPage();
+				this.controller.handleLogIn();
 			}
 		} catch (err) {
 			if (err.code === 'UserNotConfirmedException') {

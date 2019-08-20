@@ -1,0 +1,14 @@
+.row.h-100.justify-content-center
+	.col-md-auto
+		.row.justify-content-center.align-items-center
+			.col
+				form#addExpenseForm.form-inline
+					.input-group.input-group-sm
+						input#expenseTypeInput.form-control.mr-sm-2(type='text' placeholder='Add Expense Type' aria-label='Add Expense Type')
+						.input-group-append
+							button#addExpenseButton.btn.btn-outline-success(type='submit') Add
+				table.table.table-striped.table-bordered.table-sm.text-center.table-light
+					thead
+						th Amount
+						th Category
+					tbody#expensesTable
